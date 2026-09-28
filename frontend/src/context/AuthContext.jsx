@@ -2,13 +2,15 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext(null);
 
+const API_URL = import.meta.env.VITE_API_URL || '';
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const fetchProfile = async () => {
     try {
-      const response = await fetch('/user/profile', { credentials: 'include' });
+      const response = await fetch(`${API_URL}/user/profile`, { credentials: 'include' });
       if (response.ok) {
         const data = await response.json();
         setUser(data);
@@ -27,7 +29,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    const res = await fetch('/user/login', {
+    const res = await fetch(`${API_URL}/user/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -42,7 +44,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signup = async (name, email, password) => {
-    const res = await fetch('/user/signup', {
+    const res = await fetch(`${API_URL}/user/signup`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -58,7 +60,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await fetch('/user/logout', { method: 'POST', credentials: 'include' });
+      await fetch(`${API_URL}/user/logout`, { method: 'POST', credentials: 'include' });
     } finally {
       setUser(null);
     }
@@ -66,7 +68,7 @@ export const AuthProvider = ({ children }) => {
 
   const deleteAccount = async () => {
     try {
-      const res = await fetch('/user/delete', { method: 'DELETE', credentials: 'include' });
+      const res = await fetch(`${API_URL}/user/delete`, { method: 'DELETE', credentials: 'include' });
       if (res.ok) {
         setUser(null);
         return { success: true };

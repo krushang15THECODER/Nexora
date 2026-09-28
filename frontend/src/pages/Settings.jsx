@@ -4,6 +4,8 @@ import { groupChats } from '../utils/chatHelpers';
 import { useAuth } from '../context/AuthContext';
 import Sidebar from '../components/Sidebar';
 
+const API_URL = import.meta.env.VITE_API_URL || '';
+
 function Settings({ darkMode, setDarkMode }) {
   const { user, logout, deleteAccount } = useAuth();
   const navigate = useNavigate();
@@ -16,7 +18,7 @@ function Settings({ darkMode, setDarkMode }) {
 
   const fetchChats = useCallback(async () => {
     try {
-      const res = await fetch('/chat/getRecentChat', { credentials: 'include' });
+      const res = await fetch(`${API_URL}/chat/getRecentChat`, { credentials: 'include' });
       if (res.ok) {
         const data = await res.json();
         setChats(groupChats(data.chats || []));
@@ -40,7 +42,7 @@ function Settings({ darkMode, setDarkMode }) {
 
   const handleDeleteChat = async (chatId) => {
     try {
-      const res = await fetch(`/chat/deleteChat/${chatId}`, { method: 'DELETE', credentials: 'include' });
+      const res = await fetch(`${API_URL}/chat/deleteChat/${chatId}`, { method: 'DELETE', credentials: 'include' });
       if (res.ok) await fetchChats();
     } catch (err) {
       console.error(err);

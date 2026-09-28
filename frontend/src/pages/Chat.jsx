@@ -5,6 +5,8 @@ import Sidebar from '../components/Sidebar';
 import ChatArea from '../components/ChatArea';
 import Composer from '../components/Composer';
 
+const API_URL = import.meta.env.VITE_API_URL || '';
+
 function Chat({ darkMode, setDarkMode }) {
   const { user, logout } = useAuth();
   const [chats, setChats] = useState({ today: [], yesterday: [], earlier: [] });
@@ -21,7 +23,7 @@ function Chat({ darkMode, setDarkMode }) {
   // Fetch recent chats on mount
   const fetchChats = useCallback(async () => {
     try {
-      const res = await fetch('/chat/getRecentChat', { credentials: 'include' });
+      const res = await fetch(`${API_URL}/chat/getRecentChat`, { credentials: 'include' });
       if (res.ok) {
         const data = await res.json();
         setChats(groupChats(data.chats || []));
@@ -43,7 +45,7 @@ function Chat({ darkMode, setDarkMode }) {
     }
     const fetchMessages = async () => {
       try {
-        const res = await fetch(`/msg/${activeChatId}`, { credentials: 'include' });
+        const res = await fetch(`${API_URL}/msg/${activeChatId}`, { credentials: 'include' });
         if (res.ok) {
           const data = await res.json();
           setMessages(data.msg || []);
@@ -71,7 +73,7 @@ function Chat({ darkMode, setDarkMode }) {
 
   const handleDeleteChat = async (chatId) => {
     try {
-      const res = await fetch(`/chat/deleteChat/${chatId}`, { 
+      const res = await fetch(`${API_URL}/chat/deleteChat/${chatId}`, { 
         method: 'DELETE', 
         credentials: 'include' 
       });
@@ -95,7 +97,7 @@ function Chat({ darkMode, setDarkMode }) {
     setMessages(prev => [...prev, tempUserMsg]);
 
     try {
-      const endpoint = activeChatId ? `/msg/${activeChatId}` : `/msg/`;
+      const endpoint = activeChatId ? `${API_URL}/msg/${activeChatId}` : `${API_URL}/msg/`;
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

@@ -9,12 +9,19 @@ import {connectRedis} from "./config/redis.js"
 
 
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 import userRouter from "./routes/userRouter.js"
 import msgRouter from "./routes/msgRouter.js"
 import chatRouter from "./routes/chatRouter.js"
 
 const app=express();
+
+app.use(cors({
+  origin: "https://nexora-mauve-alpha.vercel.app",
+  credentials: true
+}));
+
 app.use(express.json());
 app.use(cookieParser());
 

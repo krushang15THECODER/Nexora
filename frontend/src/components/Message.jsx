@@ -26,7 +26,7 @@ const CopyButton = ({ text, label = "Copy" }) => {
   );
 };
 
-function Message({ message }) {
+function Message({ message, onRetry }) {
   const isUser = message.role === 'user';
   
   return (
@@ -81,12 +81,14 @@ function Message({ message }) {
       {!isUser && (
         <div className="flex items-center gap-4 mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
           <CopyButton text={message.content} />
-          <button className="font-mono text-[10px] uppercase text-warmGray hover:text-charcoal dark:hover:text-warmOffWhite transition-colors">
-            Retry
-          </button>
-          <button className="font-mono text-[10px] uppercase text-warmGray hover:text-charcoal dark:hover:text-warmOffWhite transition-colors">
-            More
-          </button>
+          {onRetry && (
+            <button 
+              onClick={onRetry}
+              className="font-mono text-[10px] uppercase text-warmGray hover:text-charcoal dark:hover:text-warmOffWhite transition-colors"
+            >
+              Retry
+            </button>
+          )}
         </div>
       )}
     </div>

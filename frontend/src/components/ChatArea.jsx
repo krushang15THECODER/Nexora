@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import Message from './Message';
 
-function ChatArea({ messages, isSending, onSuggestedPrompt }) {
+function ChatArea({ messages, isSending, onSuggestedPrompt, onRetry }) {
   const bottomRef = useRef(null);
 
   useEffect(() => {
@@ -56,9 +56,19 @@ function ChatArea({ messages, isSending, onSuggestedPrompt }) {
   return (
     <div className="flex-1 overflow-y-auto px-4 lg:px-8 py-8 custom-scrollbar">
       <div className="w-full max-w-4xl mx-auto space-y-2">
-        {messages.map((msg, index) => (
-          <Message key={msg._id || index} message={msg} />
-        ))}
+        {messages.map((msg, index) => {
+          let userContentForRetry = '';
+          if (msg.role !== 'user' && index > 0 && messages[index - 1].role === 'user') {
+            userContentForRetry = messages[index - 1].content;
+          }
+          return (
+            <Message 
+              key={msg._id || index} 
+              message={msg} 
+              onRetry={msg.role !== 'user' && onRetry && userContentForRetry ? () => onRetry(userContentForRetry) : undefined}
+            />
+          );
+        })}
         
         {isSending && (
           <div className="py-8">

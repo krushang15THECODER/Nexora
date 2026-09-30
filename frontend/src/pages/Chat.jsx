@@ -197,6 +197,7 @@ function Chat({ darkMode, setDarkMode }) {
           messages={messages} 
           isSending={isSending} 
           onSuggestedPrompt={setComposerText}
+          onRetry={(prompt) => handleSendMessage(prompt, selectedModel)}
         />
         
         <Composer 

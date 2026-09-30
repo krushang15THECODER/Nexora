@@ -132,7 +132,7 @@ export const signup=async(req,res)=>{
             })
         }
 
-            const hashpass=await bcrypt.hash(password,12); 
+            const hashpass=await bcrypt.hash(password,10); 
             const userCreated=await User.create({
                 name,age,email,
                 password:hashpass

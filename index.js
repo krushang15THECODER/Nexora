@@ -1,6 +1,7 @@
 import dns from "node:dns";
-
-dns.setServers(["8.8.8.8", "1.1.1.1"]);
+if (process.env.NODE_ENV !== "production") {
+    dns.setServers(["8.8.8.8", "1.1.1.1"]);
+}
 import express from "express"
 import dotenv from "dotenv"
 dotenv.config();
@@ -17,8 +18,28 @@ import chatRouter from "./routes/chatRouter.js"
 
 const app=express();
 
+const allowedOrigins = [
+  "https://nexora-mauve-alpha.vercel.app",
+  "http://localhost:5173" // for local development
+];
+
 app.use(cors({
-  origin: "https://nexora-mauve-alpha.vercel.app",
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // allow the specific listed origins
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    
+    // allow any Vercel preview deployment
+    if (origin.endsWith('.vercel.app')) {
+      return callback(null, true);
+    }
+    
+    return callback(new Error('Not allowed by CORS'), false);
+  },
   credentials: true
 }));
 
@@ -27,7 +48,13 @@ app.use(cookieParser());
 
 app.use("/user",userRouter);
 app.use("/msg",msgRouter);
-app.use("/chat",chatRouter); 
+app.use("/chat",chatRouter);
+
+// Health check endpoint to keep the server awake on free hosting tiers
+app.get("/ping", (req, res) => {
+    res.status(200).send("pong");
+});
+
 
 const startserver=async()=>{
     try{

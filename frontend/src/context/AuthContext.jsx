@@ -29,33 +29,41 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    const res = await fetch(`${API_URL}/user/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-      body: JSON.stringify({ email, password }),
-    });
-    const data = await res.json();
-    if (res.ok) {
-      await fetchProfile();
-      return { success: true };
+    try {
+      const res = await fetch(`${API_URL}/user/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        await fetchProfile();
+        return { success: true };
+      }
+      return { success: false, error: data.message || 'Login failed' };
+    } catch (error) {
+      return { success: false, error: 'Network error. Please check your connection or CORS settings.' };
     }
-    return { success: false, error: data.message || 'Login failed' };
   };
 
   const signup = async (name, email, password) => {
-    const res = await fetch(`${API_URL}/user/signup`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-      body: JSON.stringify({ name, email, password }),
-    });
-    const data = await res.json();
-    if (res.ok) {
-      await fetchProfile();
-      return { success: true };
+    try {
+      const res = await fetch(`${API_URL}/user/signup`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ name, email, password }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        await fetchProfile();
+        return { success: true };
+      }
+      return { success: false, error: data.message || 'Signup failed' };
+    } catch (error) {
+      return { success: false, error: 'Network error. Please check your connection or CORS settings.' };
     }
-    return { success: false, error: data.message || 'Signup failed' };
   };
 
   const logout = async () => {

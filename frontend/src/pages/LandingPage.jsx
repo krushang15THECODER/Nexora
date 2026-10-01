@@ -105,7 +105,7 @@ function LandingPage({ darkMode, setDarkMode }) {
                 <input 
                   type="text" 
                   placeholder="Query system..." 
-                  className="flex-1 bg-transparent border-none outline-none font-sans text-sm px-3 py-2 text-charcoal dark:text-warmOffWhite placeholder-warmGray"
+                  className="flex-1 min-w-0 bg-transparent border-none outline-none font-sans text-sm px-3 py-2 text-charcoal dark:text-warmOffWhite placeholder-warmGray"
                 />
                 <button className="bg-charcoal dark:bg-warmOffWhite text-ivory dark:text-deepCharcoal font-mono text-xs font-semibold px-4 py-2 hover:bg-terracotta dark:hover:bg-terracotta hover:text-white dark:hover:text-white active:scale-95 transition-all duration-200 rounded-sm">
                   [EXECUTE]

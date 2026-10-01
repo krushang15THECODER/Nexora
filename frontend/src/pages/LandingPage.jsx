@@ -80,23 +80,22 @@ function LandingPage({ darkMode, setDarkMode }) {
               
               <div className="space-y-3 xl:space-y-3">
                 <div className="font-mono text-xs text-[#5E8B7E] dark:text-[#76A898] font-medium tracking-wide">
-                  &gt; System Ready
+                  &gt; SYSTEM READY
                 </div>
                 <h3 className="font-serif text-3xl text-charcoal dark:text-warmOffWhite">
-                  Awaiting Input
+                  Ready to Build
                 </h3>
                 <p className="font-sans text-base text-warmGray dark:text-gray-400 leading-relaxed">
-                  The semantic interface is fully initialized.<br/>
-                  No generic gradients, no excessive rounded corners.<br/>
-                  Just pure, functional typography and layout.
+                  Bring your code, architecture, and conversations into one focused workspace. Switch models, continue previous sessions, and keep your development context in one place.
                 </p>
               </div>
               
               <div className="p-5 border border-subtleBorder dark:border-darkSubtleBorder bg-[#F2F0ED] dark:bg-darkWarmGray rounded-sm">
                 <code className="font-mono text-sm text-charcoal dark:text-warmOffWhite block leading-relaxed">
-                  &gt; status: nominal<br/>
-                  &gt; tokens_allocated: 4096<br/>
-                  &gt; context_window: active
+                  &gt; context: active<br/>
+                  &gt; models: available<br/>
+                  &gt; sessions: persistent<br/>
+                  &gt; workspace: ready
                 </code>
               </div>
 

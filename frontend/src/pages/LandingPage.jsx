@@ -29,10 +29,10 @@ function LandingPage({ darkMode, setDarkMode }) {
       </header>
 
       {/* Hero Section */}
-      <main className="flex-1 flex flex-col lg:flex-row max-w-[1400px] mx-auto w-full px-6 lg:px-12 py-16 lg:py-24 gap-16 lg:gap-24 items-center">
+      <main className="flex-1 flex flex-col lg:flex-row max-w-[1400px] mx-auto w-full px-6 lg:px-12 py-8 lg:py-6 xl:py-6 gap-8 lg:gap-8 xl:gap-12 items-center">
         
         {/* Left Column */}
-        <section className="flex-1 flex flex-col justify-center space-y-10 w-full">
+        <section className="flex-1 flex flex-col justify-center space-y-6 lg:space-y-4 xl:space-y-6 w-full">
           
           <div className="flex items-center gap-3">
             <div className="h-[1px] w-8 bg-terracotta"></div>
@@ -41,9 +41,9 @@ function LandingPage({ darkMode, setDarkMode }) {
             </span>
           </div>
 
-          <div className="space-y-6 max-w-2xl">
-            <h2 className="font-serif text-5xl lg:text-7xl leading-[1.1] text-charcoal dark:text-warmOffWhite tracking-tight">
-              A serious environment<br />
+          <div className="space-y-4 lg:space-y-3 xl:space-y-4 max-w-2xl">
+            <h2 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-6xl leading-[1.1] text-charcoal dark:text-warmOffWhite tracking-tight">
+              A serious environment<br className="hidden sm:block" />
               for cognitive engineering.
             </h2>
             <p className="font-sans text-lg lg:text-xl text-warmGray dark:text-gray-400 leading-relaxed max-w-xl">
@@ -51,7 +51,7 @@ function LandingPage({ darkMode, setDarkMode }) {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
+          <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
             <Link to="/login" className="w-full sm:w-auto bg-charcoal dark:bg-warmOffWhite text-ivory dark:text-deepCharcoal font-sans text-sm font-semibold tracking-wide px-8 py-3.5 hover:bg-[#2A2A2A] dark:hover:bg-[#E5E5E5] active:scale-95 shadow hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 rounded-sm text-center focus:outline-none focus:ring-1 focus:ring-terracotta">
               Initialize Session &rarr;
             </Link>
@@ -76,9 +76,9 @@ function LandingPage({ darkMode, setDarkMode }) {
             </div>
             
             {/* Panel Body */}
-            <div className="p-8 space-y-8">
+            <div className="p-6 xl:p-6 space-y-5 xl:space-y-6">
               
-              <div className="space-y-4">
+              <div className="space-y-3 xl:space-y-3">
                 <div className="font-mono text-xs text-[#5E8B7E] dark:text-[#76A898] font-medium tracking-wide">
                   &gt; System Ready
                 </div>

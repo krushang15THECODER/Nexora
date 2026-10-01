@@ -4,6 +4,7 @@ import bcrypt from "bcrypt"
 import {signupSchema,loginSchema} from "../validators/userValidators.js"
 import Chat from "../model/chatSchema.js"
 import Message from "../model/msgSchema.js"
+import { redisClient } from "../config/redis.js"
 
 const createToken=(id,email)=>{
     if(!process.env.JWT_SECRET)

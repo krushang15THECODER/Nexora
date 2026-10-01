@@ -49,9 +49,6 @@ function Login({ darkMode, setDarkMode }) {
               Nexora
             </h1>
           </Link>
-          <span className="font-mono text-xs text-warmGray mb-[3px]">
-            v1.0.0
-          </span>
         </div>
         <Link to="/" className="font-sans text-sm font-medium text-warmGray hover:text-charcoal dark:hover:text-warmOffWhite transition-colors">
           &larr; Return to system
@@ -102,7 +99,7 @@ function Login({ darkMode, setDarkMode }) {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-charcoal dark:bg-warmOffWhite text-ivory dark:text-deepCharcoal font-sans text-sm font-semibold tracking-wide px-8 py-3.5 mt-2 hover:bg-[#2A2A2A] dark:hover:bg-[#E5E5E5] transition-all duration-200 rounded-sm disabled:opacity-70 disabled:cursor-not-allowed focus:outline-none focus:ring-1 focus:ring-terracotta"
+              className="w-full bg-charcoal dark:bg-warmOffWhite text-ivory dark:text-deepCharcoal font-sans text-sm font-semibold tracking-wide px-8 py-3.5 mt-2 hover:bg-[#2A2A2A] dark:hover:bg-[#E5E5E5] active:scale-[0.98] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 rounded-sm disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none focus:outline-none focus:ring-1 focus:ring-terracotta"
             >
               {loading ? '[ AUTHENTICATING... ]' : '[ INITIALIZE SESSION ]'}
             </button>

@@ -4,7 +4,7 @@ import { groupChats } from '../utils/chatHelpers';
 import { useAuth } from '../context/AuthContext';
 import Sidebar from '../components/Sidebar';
 
-const API_URL = import.meta.env.VITE_API_URL || '';
+const API_URL = import.meta.env.VITE_API_URL || '/api';
 
 function Settings({ darkMode, setDarkMode }) {
   const { user, logout, deleteAccount } = useAuth();
@@ -107,13 +107,13 @@ function Settings({ darkMode, setDarkMode }) {
           <div className="w-full max-w-2xl mx-auto space-y-16">
             
             {/* Header */}
-            <div className="space-y-1">
+            <div className="space-y-1 animate-message" style={{ animationDelay: '0s' }}>
               <h2 className="font-serif text-3xl tracking-tight text-charcoal dark:text-warmOffWhite">NEXORA</h2>
               <h3 className="font-sans text-sm font-medium text-warmGray tracking-widest uppercase">Settings & Preferences</h3>
             </div>
 
             {/* Account */}
-            <section className="space-y-6">
+            <section className="space-y-6 animate-message" style={{ animationDelay: '0.1s' }}>
               <h4 className="font-mono text-[10px] text-warmGray uppercase tracking-widest border-b border-subtleBorder dark:border-darkSubtleBorder pb-2">Account</h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <div>
@@ -133,7 +133,7 @@ function Settings({ darkMode, setDarkMode }) {
             </section>
 
             {/* Usage */}
-            <section className="space-y-6">
+            <section className="space-y-6 animate-message" style={{ animationDelay: '0.2s' }}>
               <h4 className="font-mono text-[10px] text-warmGray uppercase tracking-widest border-b border-subtleBorder dark:border-darkSubtleBorder pb-2">Usage</h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <div>
@@ -152,7 +152,7 @@ function Settings({ darkMode, setDarkMode }) {
             </section>
 
             {/* Appearance */}
-            <section className="space-y-6">
+            <section className="space-y-6 animate-message" style={{ animationDelay: '0.3s' }}>
               <h4 className="font-mono text-[10px] text-warmGray uppercase tracking-widest border-b border-subtleBorder dark:border-darkSubtleBorder pb-2">Appearance</h4>
               <div className="flex items-center gap-6">
                 <button 
@@ -171,7 +171,7 @@ function Settings({ darkMode, setDarkMode }) {
             </section>
 
             {/* Session */}
-            <section className="space-y-6">
+            <section className="space-y-6 animate-message" style={{ animationDelay: '0.4s' }}>
               <h4 className="font-mono text-[10px] text-warmGray uppercase tracking-widest border-b border-subtleBorder dark:border-darkSubtleBorder pb-2">Session</h4>
               <button 
                 onClick={handleLogout}
@@ -183,7 +183,7 @@ function Settings({ darkMode, setDarkMode }) {
             </section>
 
             {/* Danger Zone */}
-            <section className="space-y-6 pt-8">
+            <section className="space-y-6 pt-8 animate-message" style={{ animationDelay: '0.5s' }}>
               <h4 className="font-mono text-[10px] text-terracotta uppercase tracking-widest border-b border-terracotta/30 pb-2">Danger Zone</h4>
               
               {error && (

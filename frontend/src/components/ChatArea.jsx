@@ -10,10 +10,10 @@ function ChatArea({ messages, isSending, onSuggestedPrompt, onRetry }) {
 
   if (!messages || messages.length === 0) {
     return (
-      <div className="flex-1 flex flex-col items-center justify-center p-8 overflow-y-auto">
-        <div className="max-w-2xl w-full space-y-12 py-12">
+      <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-8 overflow-y-auto">
+        <div className="max-w-2xl w-full space-y-8 sm:space-y-12 py-6 sm:py-12">
           
-          <div className="space-y-4 text-center">
+          <div className="space-y-2 sm:space-y-4 text-center">
             <h2 className="font-serif text-3xl text-charcoal dark:text-warmOffWhite tracking-tight">
               NEXORA
             </h2>
@@ -39,7 +39,7 @@ function ChatArea({ messages, isSending, onSuggestedPrompt, onRetry }) {
                 <button 
                   key={i}
                   onClick={() => onSuggestedPrompt(prompt)}
-                  className={`text-left font-sans text-sm text-charcoal dark:text-warmOffWhite px-5 py-4 hover:bg-[#F2F0ED]/50 dark:hover:bg-[#1A1A1A]/50 transition-colors ${
+                  className={`text-left font-sans text-sm text-charcoal dark:text-warmOffWhite px-5 py-4 hover:bg-[#F2F0ED]/50 dark:hover:bg-[#1A1A1A]/50 hover:pl-6 active:scale-[0.99] transition-all duration-200 ${
                     i !== 3 ? 'border-b border-subtleBorder dark:border-darkSubtleBorder' : ''
                   }`}
                 >
@@ -65,6 +65,7 @@ function ChatArea({ messages, isSending, onSuggestedPrompt, onRetry }) {
             <Message 
               key={msg._id || index} 
               message={msg} 
+              index={index}
               onRetry={msg.role !== 'user' && onRetry && userContentForRetry ? () => onRetry(userContentForRetry) : undefined}
             />
           );

@@ -5,7 +5,7 @@ import Sidebar from '../components/Sidebar';
 import ChatArea from '../components/ChatArea';
 import Composer from '../components/Composer';
 
-const API_URL = import.meta.env.VITE_API_URL || '';
+const API_URL = import.meta.env.VITE_API_URL || '/api';
 
 function Chat({ darkMode, setDarkMode }) {
   const { user, logout } = useAuth();
@@ -138,7 +138,7 @@ function Chat({ darkMode, setDarkMode }) {
   const chatTitle = activeChat ? activeChat.topic : 'New Workspace';
 
   return (
-    <div className="h-screen flex bg-ivory dark:bg-deepCharcoal overflow-hidden font-sans text-charcoal dark:text-warmOffWhite selection:bg-terracotta selection:text-white transition-colors duration-300">
+    <div className="h-[100dvh] flex bg-ivory dark:bg-deepCharcoal overflow-hidden font-sans text-charcoal dark:text-warmOffWhite selection:bg-terracotta selection:text-white transition-colors duration-300">
       <Sidebar 
         chats={chats}
         activeChatId={activeChatId}
@@ -173,7 +173,7 @@ function Chat({ darkMode, setDarkMode }) {
               className="font-mono text-[10px] text-warmGray hover:text-terracotta dark:hover:text-terracotta transition-colors flex items-center gap-1.5 group"
             >
               <div className={`w-1.5 h-1.5 rounded-full ${darkMode ? 'bg-terracotta' : 'bg-charcoal dark:bg-warmOffWhite'} group-hover:bg-terracotta transition-colors`}></div>
-              [ DARK_MODE ]
+              [ {darkMode ? 'LIGHT_MODE' : 'DARK_MODE'} ]
             </button>
             <div className="hidden sm:flex items-center gap-3 pl-4 border-l border-subtleBorder dark:border-darkSubtleBorder">
               <span className="font-sans text-sm font-medium">{user?.name || 'Engineer'}</span>

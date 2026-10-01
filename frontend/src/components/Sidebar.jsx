@@ -31,7 +31,7 @@ function Sidebar({ chats, activeChatId, onSelectChat, onNewChat, onDeleteChat, i
               <div 
                 key={chat._id}
                 onClick={() => onSelectChat(chat._id)}
-                className={`group flex items-center justify-between px-3 py-2 cursor-pointer transition-all duration-200 rounded-sm mx-1 ${
+                className={`group flex items-center justify-between px-3 py-2 cursor-pointer transition-all duration-200 active:scale-[0.98] rounded-sm mx-1 ${
                   isActive 
                     ? 'bg-[#F2F0ED] dark:bg-[#2A2A2A]' 
                     : 'hover:bg-ivory dark:hover:bg-[#1E1E1E]'
@@ -90,14 +90,11 @@ function Sidebar({ chats, activeChatId, onSelectChat, onNewChat, onDeleteChat, i
             <h1 className="font-serif text-2xl font-semibold tracking-tight text-charcoal dark:text-warmOffWhite leading-none">
               Nexora
             </h1>
-            <span className="font-mono text-[10px] text-warmGray">
-              v1.0.0
-            </span>
           </div>
           
           <button 
             onClick={onNewChat}
-            className="w-full flex items-center justify-center gap-2 border border-charcoal dark:border-warmOffWhite text-charcoal dark:text-warmOffWhite font-sans text-xs font-semibold tracking-wide py-2.5 rounded-sm hover:bg-charcoal dark:hover:bg-warmOffWhite hover:text-ivory dark:hover:text-deepCharcoal transition-colors focus:outline-none focus:ring-1 focus:ring-terracotta"
+            className="w-full flex items-center justify-center gap-2 border border-charcoal dark:border-warmOffWhite text-charcoal dark:text-warmOffWhite font-sans text-xs font-semibold tracking-wide py-2.5 rounded-sm hover:bg-charcoal dark:hover:bg-warmOffWhite hover:text-ivory dark:hover:text-deepCharcoal active:scale-[0.97] hover:shadow-sm transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-terracotta"
           >
             <span className="text-[14px] leading-none mb-[2px]">+</span> NEW CHAT
           </button>

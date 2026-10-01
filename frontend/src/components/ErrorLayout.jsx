@@ -71,7 +71,7 @@ export default function ErrorLayout({
               </div>
             </div>
             <div className="font-mono text-[10px] text-warmGray uppercase tracking-widest border-t border-subtleBorder dark:border-darkSubtleBorder pt-4">
-              NEXORA / v1.0.0
+              NEXORA
             </div>
           </div>
           

@@ -12,9 +12,6 @@ function LandingPage({ darkMode, setDarkMode }) {
               Nexora
             </h1>
           </Link>
-          <span className="font-mono text-xs text-warmGray mb-[3px]">
-            v1.0.0
-          </span>
         </div>
         
         <nav className="hidden md:flex items-center gap-8">
@@ -26,7 +23,7 @@ function LandingPage({ darkMode, setDarkMode }) {
             className="ml-4 font-mono text-[10px] text-warmGray hover:text-terracotta dark:hover:text-terracotta transition-colors flex items-center gap-1.5 group"
           >
             <div className={`w-1.5 h-1.5 rounded-full ${darkMode ? 'bg-terracotta' : 'bg-charcoal dark:bg-warmOffWhite'} group-hover:bg-terracotta transition-colors`}></div>
-            [ DARK_MODE ]
+            [ {darkMode ? 'LIGHT_MODE' : 'DARK_MODE'} ]
           </button>
         </nav>
       </header>
@@ -55,10 +52,10 @@ function LandingPage({ darkMode, setDarkMode }) {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
-            <Link to="/login" className="w-full sm:w-auto bg-charcoal dark:bg-warmOffWhite text-ivory dark:text-deepCharcoal font-sans text-sm font-semibold tracking-wide px-8 py-3.5 hover:bg-[#2A2A2A] dark:hover:bg-[#E5E5E5] transition-all duration-200 rounded-sm text-center focus:outline-none focus:ring-1 focus:ring-terracotta">
+            <Link to="/login" className="w-full sm:w-auto bg-charcoal dark:bg-warmOffWhite text-ivory dark:text-deepCharcoal font-sans text-sm font-semibold tracking-wide px-8 py-3.5 hover:bg-[#2A2A2A] dark:hover:bg-[#E5E5E5] active:scale-95 shadow hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 rounded-sm text-center focus:outline-none focus:ring-1 focus:ring-terracotta">
               Initialize Session &rarr;
             </Link>
-            <button className="w-full sm:w-auto bg-transparent border border-warmGray dark:border-warmGray text-charcoal dark:text-warmOffWhite font-sans text-sm font-medium px-8 py-3.5 hover:border-terracotta hover:text-terracotta dark:hover:border-terracotta dark:hover:text-terracotta transition-colors duration-200 rounded-sm">
+            <button className="w-full sm:w-auto bg-transparent border border-warmGray dark:border-warmGray text-charcoal dark:text-warmOffWhite font-sans text-sm font-medium px-8 py-3.5 hover:border-terracotta hover:text-terracotta dark:hover:border-terracotta dark:hover:text-terracotta active:scale-95 transition-all duration-200 rounded-sm">
               Read Documentation
             </button>
           </div>
@@ -110,7 +107,7 @@ function LandingPage({ darkMode, setDarkMode }) {
                   placeholder="Query system..." 
                   className="flex-1 bg-transparent border-none outline-none font-sans text-sm px-3 py-2 text-charcoal dark:text-warmOffWhite placeholder-warmGray"
                 />
-                <button className="bg-charcoal dark:bg-warmOffWhite text-ivory dark:text-deepCharcoal font-mono text-xs font-semibold px-4 py-2 hover:bg-terracotta dark:hover:bg-terracotta hover:text-white dark:hover:text-white transition-colors rounded-sm">
+                <button className="bg-charcoal dark:bg-warmOffWhite text-ivory dark:text-deepCharcoal font-mono text-xs font-semibold px-4 py-2 hover:bg-terracotta dark:hover:bg-terracotta hover:text-white dark:hover:text-white active:scale-95 transition-all duration-200 rounded-sm">
                   [EXECUTE]
                 </button>
               </div>

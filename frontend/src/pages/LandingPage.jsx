@@ -43,7 +43,8 @@ function LandingPage({ darkMode, setDarkMode }) {
 
           <div className="space-y-4 lg:space-y-3 xl:space-y-4 max-w-2xl">
             <h2 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-6xl leading-[1.1] text-charcoal dark:text-warmOffWhite tracking-tight">
-              A serious environment<br className="hidden sm:block" />
+              A serious environment{' '}
+              <br className="hidden sm:block" />
               for cognitive engineering.
             </h2>
             <p className="font-sans text-lg lg:text-xl text-warmGray dark:text-gray-400 leading-relaxed max-w-xl">

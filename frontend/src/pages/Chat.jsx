@@ -68,6 +68,13 @@ function Chat({ darkMode, setDarkMode }) {
 
   const handleSelectChat = (chatId) => {
     setActiveChatId(chatId);
+    
+    const allChats = [...chats.today, ...chats.yesterday, ...chats.earlier];
+    const selected = allChats.find(c => c._id === chatId);
+    if (selected && selected.model) {
+      setSelectedModel(selected.model);
+    }
+
     if (window.innerWidth < 1024) setIsSidebarOpen(false);
   };
 

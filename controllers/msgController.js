@@ -195,10 +195,8 @@ export const sendMsg = async (req, res) => {
       });
     }
 
-    return res.status(500).json({
-      message: rawError
-        ? `The model "${modelName}" did not respond: ${rawError}. Please change the current model and try again.`
-        : `The model "${modelName}" did not respond. Please change the current model and try again.`,
+    return res.status(503).json({
+      message: `The model "${modelName}" is currently not responding or is unavailable. Please change the current model and try again.`,
       isModelError: true,
       currentModel: modelName,
       details: rawError

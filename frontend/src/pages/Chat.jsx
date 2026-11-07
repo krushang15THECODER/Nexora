@@ -112,10 +112,15 @@ function Chat({ darkMode, setDarkMode }) {
         body: JSON.stringify({ content, model }),
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
       
       if (!res.ok) {
-        throw new Error(data.message || 'Unable to complete the request. Please try again.');
+        let errorText = data.message || '';
+        if (!errorText || errorText.toLowerCase().includes('internal server error')) {
+          const currentModelName = SUPPORTED_MODELS.find(m => m.id === model)?.name || model;
+          errorText = `The model "${currentModelName}" is currently not responding or is unavailable. Please change the current model and try again.`;
+        }
+        throw new Error(errorText);
       }
 
       // If it was a new chat, update the active chat ID and refresh list
@@ -131,7 +136,12 @@ function Chat({ darkMode, setDarkMode }) {
       });
 
     } catch (err) {
-      setError(err.message);
+      let msg = err.message || '';
+      if (!msg || msg.toLowerCase().includes('internal server error') || msg.toLowerCase().includes('failed to fetch')) {
+        const currentModelName = SUPPORTED_MODELS.find(m => m.id === model)?.name || model;
+        msg = `The model "${currentModelName}" is currently not responding or is unavailable. Please change the current model and try again.`;
+      }
+      setError(msg);
       // Remove optimistic message on fail and restore composer text
       setMessages(prev => prev.filter(m => m._id !== tempUserMsg._id));
       setComposerText(content);

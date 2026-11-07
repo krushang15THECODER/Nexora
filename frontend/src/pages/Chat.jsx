@@ -170,7 +170,7 @@ function Chat({ darkMode, setDarkMode }) {
               {chatTitle}
             </h1>
             <span className="hidden md:inline-block font-mono text-[10px] uppercase text-warmGray border border-subtleBorder dark:border-darkSubtleBorder px-1.5 py-0.5">
-              {selectedModel}
+              {SUPPORTED_MODELS.find(m => m.id === selectedModel)?.name || selectedModel}
             </span>
           </div>
           

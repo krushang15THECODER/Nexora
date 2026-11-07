@@ -59,7 +59,7 @@ function Composer({ onSendMessage, isSending, selectedModel, setSelectedModel, c
             >
               {SUPPORTED_MODELS.map(model => (
                 <option key={model.id} value={model.id} className="text-charcoal bg-white dark:bg-deepCharcoal">
-                  {model.id}
+                  {model.name || model.id}
                 </option>
               ))}
             </select>

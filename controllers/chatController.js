@@ -6,7 +6,7 @@ import message from "../model/msgSchema.js"
 //get recent chat:20 chats ,delte,new chAT,GET SINGLE CHAT
 export const getRecentChat=async(req,res)=>{
     try{
-   const chats=await Chat.find({userId:req.user._id}).select("topic updatedAt")
+   const chats=await Chat.find({userId:req.user._id}).select("topic updatedAt model")
    .sort({updatedAt:-1})
    .limit(20);
         res.status(200).json({

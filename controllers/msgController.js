@@ -123,6 +123,11 @@ export const sendMsg = async (req, res) => {
           message: "Chat not found"
         });
       }
+
+      // Update the model if the user switched it in the UI
+      if (model && chat.model !== model) {
+        chat.model = model;
+      }
     }
 
     // 3. New chat case

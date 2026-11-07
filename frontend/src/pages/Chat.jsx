@@ -132,8 +132,9 @@ function Chat({ darkMode, setDarkMode }) {
 
     } catch (err) {
       setError(err.message);
-      // Remove optimistic message on fail
+      // Remove optimistic message on fail and restore composer text
       setMessages(prev => prev.filter(m => m._id !== tempUserMsg._id));
+      setComposerText(content);
     } finally {
       setIsSending(false);
     }
@@ -143,6 +144,11 @@ function Chat({ darkMode, setDarkMode }) {
   const allChats = [...chats.today, ...chats.yesterday, ...chats.earlier];
   const activeChat = allChats.find(c => c._id === activeChatId);
   const chatTitle = activeChat ? activeChat.topic : 'New Workspace';
+
+  const handleModelChange = (modelId) => {
+    setSelectedModel(modelId);
+    setError('');
+  };
 
   return (
     <div className="h-[100dvh] flex bg-ivory dark:bg-deepCharcoal overflow-hidden font-sans text-charcoal dark:text-warmOffWhite selection:bg-terracotta selection:text-white transition-colors duration-300">
@@ -192,11 +198,38 @@ function Chat({ darkMode, setDarkMode }) {
         </header>
 
         {error && (
-          <div className="m-4 p-4 border border-terracotta bg-[#FFF9F8] dark:bg-[#2A1E1C] rounded-sm absolute top-16 left-0 right-0 z-20 mx-4 lg:mx-8 shadow-sm">
-            <span className="font-mono text-xs text-terracotta uppercase tracking-wide block mb-1">
-              [ REQUEST_FAILED ]
-            </span>
-            <p className="font-sans text-sm text-charcoal dark:text-warmOffWhite">{error}</p>
+          <div className="m-4 p-4 border border-terracotta bg-[#FFF9F8] dark:bg-[#2A1E1C] rounded-lg absolute top-16 left-0 right-0 z-20 mx-4 lg:mx-8 shadow-md">
+            <div className="flex items-start justify-between gap-3">
+              <div className="space-y-2 flex-1">
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-xs font-semibold text-terracotta uppercase tracking-wide">
+                    [ MODEL_NOTICE ]
+                  </span>
+                </div>
+                <p className="font-sans text-sm text-charcoal dark:text-warmOffWhite leading-relaxed">
+                  {error}
+                </p>
+                <div className="pt-1 flex flex-wrap items-center gap-2">
+                  <span className="font-mono text-[11px] text-warmGray">Quick switch model:</span>
+                  {SUPPORTED_MODELS.filter(m => m.id !== selectedModel).slice(0, 3).map(m => (
+                    <button
+                      key={m.id}
+                      onClick={() => handleModelChange(m.id)}
+                      className="font-mono text-[11px] px-2.5 py-1 bg-white dark:bg-deepCharcoal border border-subtleBorder dark:border-darkSubtleBorder hover:border-terracotta dark:hover:border-terracotta text-charcoal dark:text-warmOffWhite rounded transition-colors shadow-sm"
+                    >
+                      {m.name} &rarr;
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <button 
+                onClick={() => setError('')}
+                className="font-mono text-xs text-warmGray hover:text-charcoal dark:hover:text-warmOffWhite px-2 py-1 transition-colors"
+                aria-label="Dismiss notice"
+              >
+                ✕
+              </button>
+            </div>
           </div>
         )}
 
@@ -211,7 +244,7 @@ function Chat({ darkMode, setDarkMode }) {
           onSendMessage={handleSendMessage}
           isSending={isSending}
           selectedModel={selectedModel}
-          setSelectedModel={setSelectedModel}
+          setSelectedModel={handleModelChange}
           content={composerText}
           setContent={setComposerText}
         />
